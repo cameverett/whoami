@@ -4,9 +4,20 @@ export default class GitHubAcitivityDto {
     branch: string;
 } 
 
-const ACTIVITY_TYPES = {
+export const ACTIVITY_TYPES = {
     PUSH: 'PushEvent',
     CREATE: 'CreateEvent'
+}
+
+export function isValidActivityType(type): boolean {
+    Object.keys(ACTIVITY_TYPES)
+        .forEach(k => {
+            if(ACTIVITY_TYPES[k] === type) {
+                console.log('FOO');
+                return true;
+            }
+        });
+    return false;
 }
 
 export function mapToDto(response): GitHubAcitivityDto {
@@ -29,6 +40,7 @@ export function mapToDto(response): GitHubAcitivityDto {
         }
 
         default: {
+            break;
         }
     }
 }

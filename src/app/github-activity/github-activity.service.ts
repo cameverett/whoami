@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 import Activity from '../Models/Activity';
 import 'rxjs/add/operator/toPromise';
 
-import GitHubActivityDto, { mapToDto } from '../data-helpers/dtos/github-activity.dto';
+import GitHubActivityDto, { isValidActivityType, mapToDto } from '../data-helpers/dtos/github-activity.dto';
 
 @Injectable()
 export class GitHubActivityService {
@@ -22,11 +22,18 @@ export class GitHubActivityService {
   } 
 
   private mapPropsToActivityModel(resource): Activity {
-    let results = resource.json();
-    return results.map(event => {
+    const results = resource.json();
+
+    const filteredResults = results.filter( res => {
+      return isValidActivityType(res.type);
+    })
+
+    return filteredResults.map(event => {
       return mapToDto(event);
     });
   }
+
+
 
   private handleError(error: any): any {
     console.error('An error occured <GitHubActivityService>', error);
