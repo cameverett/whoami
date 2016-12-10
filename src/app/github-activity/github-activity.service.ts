@@ -4,6 +4,8 @@ import { Http } from '@angular/http';
 import Activity from '../Models/Activity';
 import 'rxjs/add/operator/toPromise';
 
+import GitHubActivityDto, { mapToDto } from '../data-helpers/dtos/github-activity.dto';
+
 @Injectable()
 export class GitHubActivityService {
   private userActivitiesUrl = 'https://api.github.com/users/';
@@ -22,13 +24,7 @@ export class GitHubActivityService {
   private mapPropsToActivityModel(resource): Activity {
     let results = resource.json();
     return results.map(event => {
-      return {
-        type: event.type,
-        ref: event.payload.ref,
-        repoName: event.repo.name,
-        repoUrl: event.repo.url,
-        message: event.payload.commits[0].message
-      };
+      return mapToDto(event);
     });
   }
 
@@ -37,3 +33,19 @@ export class GitHubActivityService {
     return (error.message || error);
   }
 }
+
+/*
+
+GET response
+  2 TYPES I'M WORRIED ABOUT
+
+  Determine by the type attribute
+    which model to users and
+    how to render the component in the app
+
+    Create some Data Transfer Object to map any model to the view
+    => I always want to render a message
+    => I always want to render a repository name
+    => I always want to render a ref / target branch
+
+*/

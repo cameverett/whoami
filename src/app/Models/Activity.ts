@@ -1,4 +1,4 @@
-export default class Event {
+export default class Activity {
     type: string;
     ref: string;
     repoName: string;

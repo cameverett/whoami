@@ -5,13 +5,13 @@
   <li *ngFor="let activity of activities" style="border: solid 0.5px #e0e0e0">
     <div class="collection-item">
 
-      <span class="title">{{ activity.message }} </span>
+      <span class="title truncate">{{ activity.message }} </span>
 
-      <a href="{{ activity.repoUrl }}" class="">
+      <a href="https://github.com/{{ activity.repoName }}" class="">
         <p>{{ activity.repoName }}</p>
       </a>
 
-      <p>@{{ activity.ref }}</p>
+      <p>{{ activity.branch }}</p>
 
     </div>
   </li>

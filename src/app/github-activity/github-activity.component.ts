@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { GitHubActivityService } from './github-activity.service';
 
 import Activity from '../Models/Activity';
-//declare var $:any;
 
 @Component({
   selector: 'github-activity',

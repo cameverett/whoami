@@ -21,7 +21,6 @@ export class GitHubRepoComponent implements OnInit {
     private getRepositories(username: string): void {
         this.repoService.getRepos(username).then(repoCollection => {
             this.repos = repoCollection;
-            console.log('Debuggging', this.repos);
         });
     }
 

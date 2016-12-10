@@ -1,6 +1,6 @@
 .card-title {
     color: #333;
-    font-size: 1.5em;
+    font-size: 1.0em;
     font-weight: 400;
 }
 .card-content {
@@ -8,8 +8,8 @@
     padding: 5px;
 }
 
-@media(max-width: 750px) {
+@media(min-width: 700px) and (min-height: 600px){
     .card-title {
-        font-size: 1.25em;
+        font-size: 1.5em;
     }
 }
