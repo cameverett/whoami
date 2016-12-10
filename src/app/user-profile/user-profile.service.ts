@@ -25,9 +25,10 @@ export class UserProfileService {
   private mapPropsToUserModel(jsonResponse): User {
     let result = jsonResponse.json();
     return {
-      username: result.login,
+      bio: result.bio,
+      profileUrl: result.html_url,
       thumbnail: result.avatar_url,
-      profileUrl: result.html_url
+      username: result.login
     }
   }
 

@@ -21,7 +21,6 @@ export class UserProfileComponent implements OnInit {
   getUser(username: string): void {
     this.userService.getUser(username)
       .then(user => { 
-        //console.log(user);
         this.user = user;
         this.hasLoaded = true;
       });

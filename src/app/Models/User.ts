@@ -1,5 +1,6 @@
 export default class User {
-    username: string;
-    thumbnail: string;
+    bio: string;
     profileUrl: string;
+    thumbnail: string;
+    username: string;
 }
