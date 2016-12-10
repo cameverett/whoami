@@ -1,0 +1,19 @@
+<h5 class="header">Public Repos I've Been Around</h5>
+<div *ngFor="let repo of repos" class="col s12 m4">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">
+                <a href="{{ repo.url }}" style="color: #f82; size:65%">
+                    {{ repo.name }}
+                </a>
+            </span>
+            <p>{{ repo.description }}</p>
+        </div>
+        <div class="card-action small">
+            <div>
+                <span>Language: {{ repo.primaryLanguage }}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

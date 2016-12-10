@@ -1,0 +1,19 @@
+<ul class="collection with-header">
+
+  <li class="collection-header">Recent Activity</li>
+
+  <li *ngFor="let activity of activities" style="border: solid 0.5px #e0e0e0">
+    <div class="collection-item">
+
+      <span class="title">{{ activity.message }} </span>
+
+      <a href="{{ activity.repoUrl }}" class="">
+        <p>{{ activity.repoName }}</p>
+      </a>
+
+      <p>@{{ activity.ref }}</p>
+
+    </div>
+  </li>
+
+</ul>

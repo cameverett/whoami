@@ -1,0 +1,15 @@
+.card-title {
+    color: #333;
+    font-size: 1.5em;
+    font-weight: 400;
+}
+.card-content {
+    height: 175px;
+    padding: 5px;
+}
+
+@media(max-width: 750px) {
+    .card-title {
+        font-size: 1.25em;
+    }
+}
