@@ -25,8 +25,8 @@ export class GitHubRepoService {
         return repos.map(res => {
             return {
                 description: res.description,
-                primaryLanguage: res.language,
                 name: res.name,
+                primaryLanguage: res.language,
                 url: res.url
             }
         })
