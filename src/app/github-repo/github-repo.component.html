@@ -12,8 +12,7 @@
         <div class="card-action small">
             <div>
                 <!-- Probably need to create a pipe-->
-                <span *ngIf="!repo.primaryLanguage">N/A</span>
-                <span>{{ repo.primaryLanguage }}</span>
+                <span>{{ repo.primaryLanguage || 'N/A' }}</span>
             </div>
         </div>
     </div>
