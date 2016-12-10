@@ -5,7 +5,7 @@ It pulls profile information including the latest user public events and lists t
 
 Next Up:
 
-TODO support for different public events
+TODO support for different public events (delete repo, comment on commit, etc).
 
 TODO add inputs so users can search other profiles.
 
