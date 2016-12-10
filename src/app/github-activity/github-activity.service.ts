@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 import Activity from '../Models/Activity';
 import 'rxjs/add/operator/toPromise';
 
-import GitHubActivityDto, { isValidActivityType, mapToDto } from '../data-helpers/dtos/github-activity.dto';
+import { isValidActivityType, mapToDto } from '../data-helpers/dtos/github-activity.dto';
 
 @Injectable()
 export class GitHubActivityService {
