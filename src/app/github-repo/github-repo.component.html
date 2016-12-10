@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-content">
             <span class="card-title">
-                <a href="{{ repo.url }}" style="color: #f82; size:65%">
+                <a href="{{ repo.url }}" style="color: #f82">
                     {{ repo.name }}
                 </a>
             </span>
@@ -11,6 +11,8 @@
         </div>
         <div class="card-action small">
             <div>
+                <!-- Probably need to create a pipe-->
+                <span *ngIf="!repo.primaryLanguage">N/A</span>
                 <span>{{ repo.primaryLanguage }}</span>
             </div>
         </div>
