@@ -27,7 +27,7 @@ export class GitHubRepoService {
                 description: res.description,
                 name: res.name,
                 primaryLanguage: res.language,
-                url: res.url
+                url: res.html_url
             }
         })
     }
