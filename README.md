@@ -11,5 +11,5 @@ TODO:
 
 -Add inputs so users can search other profiles.
 
--Get D.R.Y. with the component services (Nesting components in app.component).
+-Get D.R.Y. with the component services (Create a SINGLE GitHub API service).
 
