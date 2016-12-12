@@ -5,7 +5,11 @@ It pulls profile information including the latest user public events and lists t
 
 Next Up:
 
-TODO support for different public events (delete repo, comment on commit, etc).
+TODO:
 
-TODO add inputs so users can search other profiles.
+-Support for more public events (delete repo, comment on commit, etc).
+
+-Add inputs so users can search other profiles.
+
+-Get D.R.Y. with the component services (Nesting components in app.component).
 
