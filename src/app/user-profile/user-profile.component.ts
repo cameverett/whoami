@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
-import { UserProfileService } from './user-profile.service';
+import { Component, Input } from '@angular/core';
 
 import User from '../Models/User';
 
@@ -9,20 +7,15 @@ import User from '../Models/User';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent implements OnInit {
-  user: User;
-  hasLoaded: boolean = false;
+export class UserProfileComponent {
+  private _user: User;
 
-  constructor(private userService: UserProfileService) { }
-  ngOnInit() {
-    this.getUser('cameverett');
+  @Input()
+  set user(user: User) {
+    this._user = user
   }
 
-  getUser(username: string): void {
-    this.userService.getUser(username)
-      .then(user => { 
-        this.user = user;
-        this.hasLoaded = true;
-      });
+  get user(): User {
+    return this._user;
   }
 }
