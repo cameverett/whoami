@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
-import { GitHubActivityService } from './github-activity.service';
+import { Component, Input } from '@angular/core';
 
 import Activity from '../Models/Activity';
 
@@ -9,20 +7,15 @@ import Activity from '../Models/Activity';
   templateUrl: './github-activity.component.html',
   styleUrls: ['./github-activity.component.css']
 })
-export class GitHubActivityComponent implements OnInit {
-  private activities: Activity[];
+export class GitHubActivityComponent {
+  private _activities: Activity[];
 
-  constructor(private activityService: GitHubActivityService) { }
-
-  ngOnInit() {
-    this.getActivities('cameverett');
+  @Input()
+  set activities(activities: Activity[]) {
+    this._activities = activities;
   }
 
-  private getActivities(username: string): void {
-    this.activityService.getActivities(username)
-      .then(results => {
-        this.activities = results;
-      });
+  get activities(): Activity[] {
+    return this._activities;
   }
-
 }
