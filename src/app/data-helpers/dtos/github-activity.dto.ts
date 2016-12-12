@@ -1,3 +1,10 @@
+/**
+ * Data Transfer Objects
+ * 
+ * Provide a uniform way for the
+ * view to receive data from a service
+ * and display desired properties of an activity.
+ */
 export default class GitHubAcitivityDto {
     message: string;
     repoName: string;
