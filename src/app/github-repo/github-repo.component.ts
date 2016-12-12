@@ -1,5 +1,9 @@
+/*
 import { Component, OnInit } from '@angular/core';
 import { GitHubRepoService } from './github-repo.service';
+*/
+
+import { Component } from '@angular/core';
 
 import Repo from '../Models/Repo';
 
@@ -9,9 +13,10 @@ import Repo from '../Models/Repo';
     styleUrls: ['github-repo.component.css']
 
 })
-export class GitHubRepoComponent implements OnInit {
+export class GitHubRepoComponent /*implements OnInit*/ {
     private repos: Repo[];
 
+/*
     constructor(private repoService: GitHubRepoService) { }
 
     ngOnInit() {
@@ -23,5 +28,6 @@ export class GitHubRepoComponent implements OnInit {
             this.repos = repoCollection;
         });
     }
+*/
 
 }
