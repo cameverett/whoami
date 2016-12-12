@@ -40,19 +40,3 @@ export class GitHubActivityService {
     return (error.message || error);
   }
 }
-
-/*
-
-GET response
-  2 TYPES I'M WORRIED ABOUT
-
-  Determine by the type attribute
-    which model to users and
-    how to render the component in the app
-
-    Create some Data Transfer Object to map any model to the view
-    => I always want to render a message
-    => I always want to render a repository name
-    => I always want to render a ref / target branch
-
-*/
