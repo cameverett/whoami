@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { GitHubRepoService } from './github-repo.service';
 */
 
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import Repo from '../Models/Repo';
 
@@ -14,7 +14,18 @@ import Repo from '../Models/Repo';
 
 })
 export class GitHubRepoComponent /*implements OnInit*/ {
-    private repos: Repo[];
+    private _repos: Repo[];
+
+    @Input()
+    set repos(repos: Repo[]) {
+        this._repos = repos;
+    }
+
+    get repos(): Repo[] {
+        return this._repos;
+    }
+
+
 
 /*
     constructor(private repoService: GitHubRepoService) { }
