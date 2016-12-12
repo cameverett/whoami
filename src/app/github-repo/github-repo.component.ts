@@ -1,8 +1,3 @@
-/*
-import { Component, OnInit } from '@angular/core';
-import { GitHubRepoService } from './github-repo.service';
-*/
-
 import { Component, Input } from '@angular/core';
 
 import Repo from '../Models/Repo';
@@ -24,21 +19,4 @@ export class GitHubRepoComponent /*implements OnInit*/ {
     get repos(): Repo[] {
         return this._repos;
     }
-
-
-
-/*
-    constructor(private repoService: GitHubRepoService) { }
-
-    ngOnInit() {
-        this.getRepositories('cameverett');
-    }
-
-    private getRepositories(username: string): void {
-        this.repoService.getRepos(username).then(repoCollection => {
-            this.repos = repoCollection;
-        });
-    }
-*/
-
 }
