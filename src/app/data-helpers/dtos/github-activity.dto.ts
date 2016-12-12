@@ -6,9 +6,10 @@
  * and display desired properties of an activity.
  */
 export default class GitHubAcitivityDto {
+    branch: string;
+    linkToActivity: string;
     message: string;
     repoName: string;
-    branch: string;
 } 
 
 export const ACTIVITY_TYPES = {
@@ -29,11 +30,13 @@ export function isValidActivityType(type): boolean {
 }
 
 export function mapToDto(response): GitHubAcitivityDto {
+    const domain: string = 'https://github.com/';
     switch (response.type) {
 
         case ACTIVITY_TYPES.CREATE: {
             return {
                 branch: response.payload.description,
+                linkToActivity: domain + response.repo.name,
                 message: 'created ' + ( response.payload.ref || response.payload.ref_type),
                 repoName: response.repo.name
             }
@@ -43,7 +46,8 @@ export function mapToDto(response): GitHubAcitivityDto {
             return {
                 branch: response.payload.ref,
                 message: response.payload.commits[0].message,
-                repoName: response.repo.name
+                repoName: response.repo.name,
+                linkToActivity: domain + response.repo.name + '/commit/' + response.payload.commits[0].sha,
             }
         }
 
