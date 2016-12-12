@@ -8,7 +8,7 @@ import Repo from '../Models/Repo';
     styleUrls: ['github-repo.component.css']
 
 })
-export class GitHubRepoComponent /*implements OnInit*/ {
+export class GitHubRepoComponent {
     private _repos: Repo[];
 
     @Input()
