@@ -9,7 +9,7 @@ import Repo from './Models/Repo';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private repos: Repo[];
+  repos: Repo[];
 
   constructor(private repoService: GitHubRepoService) {}
 
