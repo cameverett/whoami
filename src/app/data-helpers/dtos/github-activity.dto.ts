@@ -10,12 +10,10 @@ export const ACTIVITY_TYPES = {
 }
 
 export function isValidActivityType(type): boolean {
-    let isValid = false;
     const keys = Object.keys(ACTIVITY_TYPES)
 
     for(let i = 0; i < keys.length; i++) {
         if(ACTIVITY_TYPES[keys[i]] === type) {
-            isValid = true;
             return true;
         }
     }
