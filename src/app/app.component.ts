@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AppService } from './app.service';
-import { GitHubActivityService } from './github-activity/github-activity.service';
 
 import Activity from './Models/Activity';
 import Repo from './Models/Repo';
@@ -19,9 +18,7 @@ export class AppComponent implements OnInit {
 
   private username: string = 'cameverett';
 
-  constructor(
-    private appService: AppService,
-    private activityService: GitHubActivityService) {}
+  constructor(private appService: AppService) {}
 
   ngOnInit() {
     this.getActivities(this.username);
@@ -30,7 +27,7 @@ export class AppComponent implements OnInit {
   }
 
   private getActivities(username: string): void {
-    this.activityService.getActivities(username)
+    this.appService.getActivities(username)
       .then(activities => this.activities = activities);
   }
   private getRepositories(username: string): void {

@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppService } from './app.service';
-import { GitHubActivityService } from './github-activity/github-activity.service';
 
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -25,7 +24,6 @@ import { GitHubRepoComponent } from './github-repo/github-repo.component';
   ],
   providers: [
     AppService,
-    GitHubActivityService
   ],
   bootstrap: [AppComponent]
 })
