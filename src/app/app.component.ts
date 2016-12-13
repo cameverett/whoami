@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AppService } from './app.service';
+import { AppGitHubService } from './app-github.service';
 
 import Activity from './Models/Activity';
 import Repo from './Models/Repo';
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
 
   private username: string = 'cameverett';
 
-  constructor(private appService: AppService) {}
+  constructor(private appService: AppGitHubService) {}
 
   ngOnInit() {
     this.getActivities(this.username);

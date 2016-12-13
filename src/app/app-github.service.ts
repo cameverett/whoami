@@ -10,7 +10,7 @@ import User from './Models/User';
 import { isValidActivityType, mapToDto } from './data-helpers/dtos/github-activity.dto'
 
 @Injectable()
-export class AppService {
+export class AppGitHubService {
     private repoByUsernameUrl = 'https://api.github.com/users/';
     private userActivitiesUrl = 'https://api.github.com/users/';
     private userProfileUrl = 'https://api.github.com/users/';
