@@ -23,7 +23,7 @@ import { GitHubRepoComponent } from './github-repo/github-repo.component';
     HttpModule
   ],
   providers: [
-    AppService,
+    AppGitHubService,
   ],
   bootstrap: [AppComponent]
 })
