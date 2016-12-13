@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { AppService } from './app.service';
 import { UserProfileService } from './user-profile/user-profile.service';
 import { GitHubRepoService } from './github-repo/github-repo.service';
 import { GitHubActivityService } from './github-activity/github-activity.service';
@@ -25,6 +26,7 @@ import { GitHubRepoComponent } from './github-repo/github-repo.component';
     HttpModule
   ],
   providers: [
+    AppService,
     GitHubActivityService,
     GitHubRepoService,
     UserProfileService
