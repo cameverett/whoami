@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { AppService } from './app.service';
 import { GitHubActivityService } from './github-activity/github-activity.service';
-import { GitHubRepoService } from './github-repo/github-repo.service';
 import { UserProfileService } from './user-profile/user-profile.service';
 
 import Activity from './Models/Activity';

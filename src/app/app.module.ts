@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 
 import { AppService } from './app.service';
 import { UserProfileService } from './user-profile/user-profile.service';
-import { GitHubRepoService } from './github-repo/github-repo.service';
 import { GitHubActivityService } from './github-activity/github-activity.service';
 
 import { AppComponent } from './app.component';
@@ -28,7 +27,6 @@ import { GitHubRepoComponent } from './github-repo/github-repo.component';
   providers: [
     AppService,
     GitHubActivityService,
-    GitHubRepoService,
     UserProfileService
   ],
   bootstrap: [AppComponent]
