@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AppService } from './app.service';
 import { GitHubActivityService } from './github-activity/github-activity.service';
 import { GitHubRepoService } from './github-repo/github-repo.service';
 import { UserProfileService } from './user-profile/user-profile.service';
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
   private username: string = 'cameverett';
 
   constructor(
+    private appService: AppService,
     private activityService: GitHubActivityService,
     private repoService: GitHubRepoService,
     private userService: UserProfileService) {}
