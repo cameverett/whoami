@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
   constructor(
     private appService: AppService,
     private activityService: GitHubActivityService,
-    private repoService: GitHubRepoService,
     private userService: UserProfileService) {}
 
   ngOnInit() {
