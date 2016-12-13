@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
       .then(activities => this.activities = activities);
   }
   private getRepositories(username: string): void {
-    this.repoService.getRepos(username)
+    this.appService.getRepos(username)
       .then(repos => this.repos = repos);
   }
   private getUser(username: string): void {
