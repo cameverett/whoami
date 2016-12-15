@@ -14,7 +14,6 @@ export class UserProfileComponent {
   newUserChangeRequest: EventEmitter<string> = new EventEmitter();
 
   sendUserChangeRequest(username: string) {
-    console.log('SEND: ', username);
     this.newUserChangeRequest.emit(username);
   }
 
