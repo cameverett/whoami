@@ -1,11 +1,11 @@
 <div *ngIf="user" class="card">
   <div class="card-image">
     <img src="{{ user.thumbnail }}">
-    <span class="card-title"><strong>{{ user.username }}</strong></span>
+    <span class="card-title"><strong>@{{ user.username }}</strong></span>
   </div>
   <form>
     <div class="input-field">
-      <input #userinput id="username" (keyup.enter)="sendUserChangeRequest(userinput.value)" placeholder="Enter username..." type="search" required>
+      <input #userinput id="username" (keyup.enter)="sendUserChangeRequest(userinput.value)" placeholder="Find someone else!" type="search" required>
       <label for="username"><i class="material-icons">search</i></label>
     </div>
   </form>

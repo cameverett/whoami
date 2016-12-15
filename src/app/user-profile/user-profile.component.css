@@ -1,3 +1,9 @@
+.card-title {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 2em;
+    color: #fff;
+    padding: 0.5em;
+}
 .input-field {
     background-color: #fff;
 }
