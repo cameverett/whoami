@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import User from '../Models/User';
 
@@ -10,13 +10,13 @@ import User from '../Models/User';
 export class UserProfileComponent {
   private _user: User;
 
+  @Output()
+  newUserChangeRequest: EventEmitter<string> = new EventEmitter();
 
-  onChangeUserEvent(username: string): string {
-    console.log(username);
-    return username;
+  sendUserChangeRequest(username: string) {
+    console.log('SEND: ', username);
+    this.newUserChangeRequest.emit(username);
   }
-
-
 
   @Input()
   set user(user: User) {
