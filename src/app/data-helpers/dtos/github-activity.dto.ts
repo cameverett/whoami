@@ -55,9 +55,9 @@ export function mapToDto(response): GitHubAcitivityDto {
         case ACTIVITY_TYPES.PUSH: {
             return {
                 branch: response.payload.ref,
-                message: response.payload.commits[0].message,
-                repoName: response.repo.name,
                 linkToActivity: domain + response.repo.name + '/commit/' + response.payload.commits[0].sha,
+                message: response.payload.commits[0].message,
+                repoName: response.repo.name
             }
         }
 
