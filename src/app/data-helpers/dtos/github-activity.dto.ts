@@ -13,8 +13,9 @@ export default class GitHubAcitivityDto {
 } 
 
 export const ACTIVITY_TYPES = {
-    PUSH: 'PushEvent',
-    CREATE: 'CreateEvent'
+    CREATE: 'CreateEvent',
+    COMMITCOMMENT: 'CommitCommentEvent',
+    PUSH: 'PushEvent'
 }
 
 export function isValidActivityType(type): boolean {
@@ -32,6 +33,14 @@ export function isValidActivityType(type): boolean {
 export function mapToDto(response): GitHubAcitivityDto {
     const domain: string = 'https://github.com/';
     switch (response.type) {
+        case ACTIVITY_TYPES.COMMITCOMMENT: {
+            return {
+                branch: '',
+                linkToActivity: response.payload.comment.html_url,
+                message: "Says, '" + response.payload.comment.body + "'",
+                repoName: 'View the comment thread',
+            }
+        }
 
         case ACTIVITY_TYPES.CREATE: {
             return {
@@ -41,6 +50,7 @@ export function mapToDto(response): GitHubAcitivityDto {
                 repoName: response.repo.name
             }
         }
+
 
         case ACTIVITY_TYPES.PUSH: {
             return {
