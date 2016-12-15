@@ -21,9 +21,13 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppGitHubService) {}
 
   ngOnInit() {
-    this.getActivities(this.username);
-    this.getRepositories(this.username);
-    this.getUser(this.username);
+    this.loadNewUserInfo(this.username);
+  }
+
+  private loadNewUserInfo(username: string): void {
+    this.getUser(username);
+    this.getActivities(username);
+    this.getRepositories(username);
   }
 
   private getActivities(username: string): void {

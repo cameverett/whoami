@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 
 import User from '../Models/User';
 
@@ -10,9 +10,13 @@ import User from '../Models/User';
 export class UserProfileComponent {
   private _user: User;
 
-  onChangeUserEvent(username: string): void {
+
+  onChangeUserEvent(username: string): string {
     console.log(username);
+    return username;
   }
+
+
 
   @Input()
   set user(user: User) {
