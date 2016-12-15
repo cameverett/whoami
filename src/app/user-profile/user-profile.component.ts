@@ -20,7 +20,7 @@ export class UserProfileComponent {
 
   @Input()
   set user(user: User) {
-    this._user = user
+    this._user = user;
   }
 
   get user(): User {

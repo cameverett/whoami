@@ -32,14 +32,17 @@ export class AppComponent implements OnInit {
   }
 
   private getActivities(username: string): void {
+    console.log('GET ACTIVITIES FOR ', username);
     this.appService.getActivities(username)
       .then(activities => this.activities = activities);
   }
   private getRepositories(username: string): void {
+    console.log('GET REPOS FOR ', username);
     this.appService.getRepos(username)
       .then(repos => this.repos = repos);
   }
   private getUser(username: string): void {
+    console.log('GET USER INFO FOR ', username);
     this.appService.getUser(username)
       .then(user => this.user = user);
   }

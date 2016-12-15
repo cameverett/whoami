@@ -7,7 +7,7 @@ import Activity from './Models/Activity';
 import Repo from './Models/Repo';
 import User from './Models/User';
 
-import { isValidActivityType, mapToDto } from './data-helpers/dtos/github-activity.dto'
+import { isValidActivityType, mapToDto } from './data-helpers/dtos/github-activity.dto';
 
 @Injectable()
 export class AppGitHubService {
@@ -21,9 +21,9 @@ export class AppGitHubService {
         return this.http.get(this.userActivitiesUrl + username + '/events/public?per_page=3')
             .toPromise()
             .then(resource => {
-            return this.mapPropsToActivityModel(resource);
-        })
-        .catch(this.handleError);
+                return this.mapPropsToActivityModel(resource);
+            })
+            .catch(this.handleError);
     } 
     
     getRepos(user: string): Promise<Repo[]> {
