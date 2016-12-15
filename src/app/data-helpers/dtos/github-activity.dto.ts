@@ -15,6 +15,7 @@ export default class GitHubAcitivityDto {
 export const ACTIVITY_TYPES = {
     CREATE: 'CreateEvent',
     COMMITCOMMENT: 'CommitCommentEvent',
+    FORK: 'ForkEvent',
     PUSH: 'PushEvent'
 }
 
@@ -48,6 +49,15 @@ export function mapToDto(response): GitHubAcitivityDto {
                 linkToActivity: domain + response.repo.name,
                 message: 'created ' + ( response.payload.ref || response.payload.ref_type),
                 repoName: response.repo.name
+            }
+        }
+
+        case ACTIVITY_TYPES.FORK: {
+            return {
+                branch: '',
+                linkToActivity: response.payload.html_url,
+                message: 'forked ' + response.repo.name,
+                repoName: response.payload.forkee.full_name
             }
         }
 
