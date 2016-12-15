@@ -10,6 +10,10 @@ import User from '../Models/User';
 export class UserProfileComponent {
   private _user: User;
 
+  onChangeUserEvent(username: string): void {
+    console.log(username);
+  }
+
   @Input()
   set user(user: User) {
     this._user = user
