@@ -3,6 +3,12 @@
     <img src="{{ user.thumbnail }}">
     <span class="card-title"><strong>{{ user.username }}</strong></span>
   </div>
+  <form>
+    <div class="input-field">
+      <input id="username" placeholder="Enter username..." type="search" required>
+      <label for="username"><i class="material-icons">search</i></label>
+    </div>
+  </form>
   <div class="card-content">
     <p>{{ user.bio }}</p>
   </div>
