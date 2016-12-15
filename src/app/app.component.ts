@@ -25,10 +25,10 @@ export class AppComponent implements OnInit {
   }
 
   private loadNewUserInfo(username: string): void {
-    console.log('RECEIVED: ', username);
     this.getUser(username);
     this.getActivities(username);
     this.getRepositories(username);
+    console.log('RECEIVED: ', username);
   }
 
   private getActivities(username: string): void {
