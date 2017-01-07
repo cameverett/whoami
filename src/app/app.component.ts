@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
 
   private getActivities(username: string): void {
     this.appService.getActivities(username)
-      .then(activities => {
+      .subscribe(activities => {
         this.activities = activities
       });
   }

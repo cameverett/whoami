@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 import Activity from './Models/Activity';
 import Repo from './Models/Repo';
@@ -17,6 +20,18 @@ export class AppGitHubService {
 
     constructor(private http: Http) { }
 
+    getActivities(username: string): Observable<Activity[]> {
+        return this.http.get(this.userActivitiesUrl + username + '/events/public?per_page=3')
+            .map((res: Response) => {
+                console.log('Observable Response res.json():', res.json())
+                return this.mapPropsToActivityModel(res);
+            })
+            .catch((error: any) => {
+                return Observable.throw(error)
+            })
+    } 
+
+/*
     getActivities(username: string): Promise<Activity[]> {
         return this.http.get(this.userActivitiesUrl + username + '/events/public?per_page=3')
             .toPromise()
@@ -25,6 +40,7 @@ export class AppGitHubService {
             })
             .catch(this.handleError);
     } 
+    */
     
     getRepos(user: string): Promise<Repo[]> {
         return this.http.get( this.repoByUsernameUrl + user + '/repos?per_page=9')
