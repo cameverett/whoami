@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
   }
   private getUser(username: string): void {
     this.appService.getUser(username)
-      .then(user => {
+      .subscribe(user => {
         this.user = user
       });
   }
