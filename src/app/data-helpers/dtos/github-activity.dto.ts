@@ -12,6 +12,7 @@ export default class GitHubAcitivityDto {
     repoName: string;
 } 
 
+// Activity types currently supported by the application.
 export const ACTIVITY_TYPES = {
     CREATE: 'CreateEvent',
     COMMITCOMMENT: 'CommitCommentEvent',
@@ -19,7 +20,12 @@ export const ACTIVITY_TYPES = {
     PUSH: 'PushEvent'
 }
 
-export function isValidActivityType(type): boolean {
+/**
+  * Check if the activity is in the ACTIVITY_TYPES object
+  * If it is not do not display it.
+  * @param {string} type - Name of an Activity object's type
+  */
+export function isValidActivityType(type: string): boolean {
     const keys = Object.keys(ACTIVITY_TYPES)
 
     for(let i = 0; i < keys.length; i++) {
@@ -31,9 +37,15 @@ export function isValidActivityType(type): boolean {
     return false;
 }
 
-export function mapToDto(response): GitHubAcitivityDto {
+/**
+ * Return model according to the type property of response
+ * Provides a common interface when displaying data in the view.
+ * @param {any} response Json from http request
+ */
+export function mapToDto(response: any): GitHubAcitivityDto {
     const domain: string = 'https://github.com/';
     switch (response.type) {
+
         case ACTIVITY_TYPES.COMMITCOMMENT: {
             return {
                 branch: '',
