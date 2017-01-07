@@ -27,21 +27,19 @@ export class AppGitHubService {
                 return this.mapPropsToActivityModel(res);
             })
             .catch((error: any) => {
-                return Observable.throw(error)
+                return Observable.throw(error) || 'Server Error.'
             })
     } 
-
+    getRepos(username: string): Observable<Repo[]> {
+        return this.http.get(this.repoByUsernameUrl + username + '/repos?per_page=9')
+            .map((res: Response) => {
+                return this.mapPropsToRepoModel(res);
+            })
+            .catch((error: any) => {
+                return Observable.throw(error) || 'Server Error';
+            })
+    }
 /*
-    getActivities(username: string): Promise<Activity[]> {
-        return this.http.get(this.userActivitiesUrl + username + '/events/public?per_page=3')
-            .toPromise()
-            .then(resource => {
-                return this.mapPropsToActivityModel(resource);
-            })
-            .catch(this.handleError);
-    } 
-    */
-    
     getRepos(user: string): Promise<Repo[]> {
         return this.http.get( this.repoByUsernameUrl + user + '/repos?per_page=9')
             .toPromise()
@@ -50,6 +48,7 @@ export class AppGitHubService {
             })
             .catch(this.handleError);
     }
+*/
 
     getUser(username: string) : Promise<User> {
         return this.http.get(this.userProfileUrl + username)

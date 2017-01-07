@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   }
   private getRepositories(username: string): void {
     this.appService.getRepos(username)
-      .then(repos => {
+      .subscribe(repos => {
         this.repos = repos
       });
   }
