@@ -23,7 +23,6 @@ export class AppGitHubService {
     getActivities(username: string): Observable<Activity[]> {
         return this._http.get(this.userActivitiesUrl + username + '/events/public?per_page=3')
             .map((res: Response) => {
-                console.log('Observable Response res.json():', res.json())
                 return this.mapPropsToActivityModel(res);
             })
             .catch((error: any) => {
