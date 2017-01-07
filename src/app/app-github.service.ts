@@ -18,10 +18,10 @@ export class AppGitHubService {
     private userActivitiesUrl = 'https://api.github.com/users/';
     private userProfileUrl = 'https://api.github.com/users/';
 
-    constructor(private http: Http) { }
+    constructor(private _http: Http) { }
 
     getActivities(username: string): Observable<Activity[]> {
-        return this.http.get(this.userActivitiesUrl + username + '/events/public?per_page=3')
+        return this._http.get(this.userActivitiesUrl + username + '/events/public?per_page=3')
             .map((res: Response) => {
                 console.log('Observable Response res.json():', res.json())
                 return this.mapPropsToActivityModel(res);
@@ -31,7 +31,7 @@ export class AppGitHubService {
             })
     } 
     getRepos(username: string): Observable<Repo[]> {
-        return this.http.get(this.repoByUsernameUrl + username + '/repos?per_page=9')
+        return this._http.get(this.repoByUsernameUrl + username + '/repos?per_page=9')
             .map((res: Response) => {
                 return this.mapPropsToRepoModel(res);
             })
@@ -39,29 +39,19 @@ export class AppGitHubService {
                 return Observable.throw(error) || 'Server Error';
             })
     }
-/*
-    getRepos(user: string): Promise<Repo[]> {
-        return this.http.get( this.repoByUsernameUrl + user + '/repos?per_page=9')
-            .toPromise()
-            .then(response => {
-                return this.mapPropsToRepoModel( response );
-            })
-            .catch(this.handleError);
-    }
-*/
 
-    getUser(username: string) : Promise<User> {
-        return this.http.get(this.userProfileUrl + username)
-            .toPromise()
-            .then(response => {
-                return this.mapPropsToUserModel(response);
-            
+    getUser(username: string): Observable<User> {
+        return this._http.get(this.userProfileUrl + username)
+            .map((res: Response) => {
+                return this.mapPropsToUserModel(res);
             })
-            .catch(this.handleError);
+            .catch((error: any) => {
+                return Observable.throw(error) || 'Server Error';
+            })
     }
-    
-    private mapPropsToActivityModel(resource): Activity {
-        const results = resource.json();
+
+    private mapPropsToActivityModel(response: Response): Activity {
+        const results = response.json();
         
         const filteredResults = results.filter( res => {
             return isValidActivityType(res.type);
@@ -71,7 +61,7 @@ export class AppGitHubService {
             return mapToDto(event);
         });
     }
-    private mapPropsToRepoModel(response): Repo {
+    private mapPropsToRepoModel(response: Response): Repo {
         const repos = response.json();
         return repos.map(res => {
             return {
@@ -83,8 +73,8 @@ export class AppGitHubService {
         })
     }
 
-    private mapPropsToUserModel(jsonResponse): User {
-        let result = jsonResponse.json();
+    private mapPropsToUserModel(response: Response): User {
+        let result = response.json();
         return {
             bio: result.bio,
             profileUrl: result.html_url,
@@ -93,8 +83,4 @@ export class AppGitHubService {
         }
     }
 
-    private handleError(error: any): any {
-        console.error('An error has occured <GitHubRepoService>', error);
-        return (error.message || error);
-    }
 }
