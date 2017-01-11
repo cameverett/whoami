@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   private getActivities(username: string): void {
     this.appService.getActivities(username)
       .subscribe(activities => {
-        this.activities = activities
+        this.activities = activities;
       });
   }
 
@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
   private getRepositories(username: string): void {
     this.appService.getRepos(username)
       .subscribe(repos => {
-        this.repos = repos
+        this.repos = repos;
       });
   }
 
@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
   private getUser(username: string): void {
     this.appService.getUser(username)
       .subscribe(user => {
-        this.user = user
+        this.user = user;
       });
   }
 }
