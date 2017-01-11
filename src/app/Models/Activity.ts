@@ -1,7 +1,7 @@
-export default class Activity {
-    type: string;
+export interface Activity {
+    message: string;
     ref: string;
     repoName: string;
     repoUrl: string;
-    message: string;
+    type: string;
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import User from '../Models/User';
+import { User } from '../Models/User';
 
 @Component({
   selector: 'user-profile',

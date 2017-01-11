@@ -1,4 +1,4 @@
-export default class User {
+export interface User {
     bio: string;
     profileUrl: string;
     thumbnail: string;

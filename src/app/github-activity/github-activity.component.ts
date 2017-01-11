@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import Activity from '../Models/Activity';
+import { Activity } from '../Models/Activity';
 
 @Component({
   selector: 'github-activity',

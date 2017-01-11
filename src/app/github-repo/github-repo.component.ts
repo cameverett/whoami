@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import Repo from '../Models/Repo';
+import { Repo } from '../Models/Repo';
 
 @Component({
     selector: 'github-repo',

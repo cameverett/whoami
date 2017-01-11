@@ -6,9 +6,9 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import Activity from './Models/Activity';
-import Repo from './Models/Repo';
-import User from './Models/User';
+import { Activity } from './Models/Activity';
+import { Repo } from './Models/Repo';
+import { User } from './Models/User';
 
 import { isValidActivityType, mapToDto } from './data-helpers/dtos/github-activity.dto';
 

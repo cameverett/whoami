@@ -1,7 +1,7 @@
-export default class Repo {
-    name: string;
-    url: string;
+export interface Repo {
     description: string;
+    name: string;
     primaryLanguage: string;
+    url: string;
 
 }

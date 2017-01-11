@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { AppGitHubService } from './app-github.service';
 
-import Activity from './Models/Activity';
-import Repo from './Models/Repo';
-import User from './Models/User';
+import { Activity } from './Models/Activity';
+import { Repo } from './Models/Repo';
+import { User } from './Models/User';
 
 @Component({
   selector: 'app-root',
