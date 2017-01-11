@@ -17,6 +17,7 @@ export const ACTIVITY_TYPES = {
     CREATE: 'CreateEvent',
     COMMITCOMMENT: 'CommitCommentEvent',
     FORK: 'ForkEvent',
+    ISSUE: 'IssuesEvent',
     PUSH: 'PushEvent',
     WATCH: 'WatchEvent'
 }
@@ -76,6 +77,15 @@ export function mapToDto(response: any): GitHubActivityDto {
             }
         }
 
+        case ACTIVITY_TYPES.ISSUE: {
+            console.log(response);
+            return {
+                branch: '',
+                linkToActivity: response.payload.issue.html_url,
+                message: response.payload.action + ' an issue.',
+                repoName: response.payload.issue.title,
+            }
+        }
 
         case ACTIVITY_TYPES.PUSH: {
             return {
