@@ -7,6 +7,11 @@ import Activity from '../Models/Activity';
   templateUrl: './github-activity.component.html',
   styleUrls: ['./github-activity.component.css']
 })
+
+/**
+ * Handles the layout of the current array of activities
+ * from the AppComponent.
+ */
 export class GitHubActivityComponent {
   private _activities: Activity[];
 
