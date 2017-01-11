@@ -89,9 +89,9 @@ export function mapToDto(response: any): GitHubAcitivityDto {
         case ACTIVITY_TYPES.WATCH: {
             return {
                 branch: '',
-                linkToActivity: `${domain}/${response.repo.name}`,
-                message: `${response.actor.display_login} watched a repo.`,
-                repoName: `${response.repo.name}`
+                linkToActivity: domain + response.repo.name,
+                message: response.actor.display_login + ' watched a repo.',
+                repoName: response.repo.name
             }
         }
 
