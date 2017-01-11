@@ -17,7 +17,8 @@ export const ACTIVITY_TYPES = {
     CREATE: 'CreateEvent',
     COMMITCOMMENT: 'CommitCommentEvent',
     FORK: 'ForkEvent',
-    PUSH: 'PushEvent'
+    PUSH: 'PushEvent',
+    WATCH: 'WatchEvent'
 }
 
 /**
@@ -40,7 +41,7 @@ export function isValidActivityType(type: string): boolean {
 /**
  * Return model according to the type property of response
  * Provides a common interface when displaying data in the view.
- * @param {any} response Json from http request
+ * @param {any} response from http request
  */
 export function mapToDto(response: any): GitHubAcitivityDto {
     const domain: string = 'https://github.com/';
@@ -80,6 +81,16 @@ export function mapToDto(response: any): GitHubAcitivityDto {
                 linkToActivity: domain + response.repo.name + '/commit/' + response.payload.commits[0].sha,
                 message: response.payload.commits[0].message,
                 repoName: response.repo.name
+            }
+        }
+
+        case ACTIVITY_TYPES.WATCH: {
+            console.log(response)
+            return {
+                branch: '',
+                linkToActivity: `${domain}/${response.repo.name}`,
+                message: `${response.actor.display_login} watched a repo.`,
+                repoName: `${response.repo.name}`
             }
         }
 
