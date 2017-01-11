@@ -25,6 +25,7 @@ export const ACTIVITY_TYPES = {
   * Check if the activity is in the ACTIVITY_TYPES object
   * If it is not do not display it.
   * @param {string} type - Name of an Activity object's type
+  * @returns {boolean} - is the type found in ACTIVITY_TYPES
   */
 export function isValidActivityType(type: string): boolean {
     const keys = Object.keys(ACTIVITY_TYPES)
@@ -42,6 +43,7 @@ export function isValidActivityType(type: string): boolean {
  * Return model according to the type property of response
  * Provides a common interface when displaying data in the view.
  * @param {any} response from http request
+ * @returns {GitHubAcitivityDto} returns a valid GitHubAcitivityDto.
  */
 export function mapToDto(response: any): GitHubAcitivityDto {
     const domain: string = 'https://github.com/';
