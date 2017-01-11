@@ -12,11 +12,11 @@ import User from './Models/User';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  activities: Activity[];
-  repos: Repo[];
+  activities: Array<Activity>;
+  repos: Array<Repo>;
   user: User;
 
-  private username: string = 'cameverett';
+  private username: string = 'github';
 
   constructor(private appService: AppGitHubService) {}
 
