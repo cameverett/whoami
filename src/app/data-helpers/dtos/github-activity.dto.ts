@@ -5,7 +5,7 @@
  * view to receive data from a service
  * and display desired properties of an activity.
  */
-export default class GitHubAcitivityDto {
+export interface GitHubActivityDto {
     branch: string;
     linkToActivity: string;
     message: string;
@@ -43,9 +43,9 @@ export function isValidActivityType(type: string): boolean {
  * Return model according to the type property of response
  * Provides a common interface when displaying data in the view.
  * @param {any} response from http request
- * @returns {GitHubAcitivityDto} returns a valid GitHubAcitivityDto.
+ * @returns {GitHubActivityDto} returns a valid GitHubActivityDto.
  */
-export function mapToDto(response: any): GitHubAcitivityDto {
+export function mapToDto(response: any): GitHubActivityDto {
     const domain: string = 'https://github.com/';
     switch (response.type) {
 
