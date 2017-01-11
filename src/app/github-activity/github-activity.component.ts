@@ -13,14 +13,14 @@ import Activity from '../Models/Activity';
  * from the AppComponent.
  */
 export class GitHubActivityComponent {
-  private _activities: Activity[];
+  private _activities: Array<Activity>;
 
   @Input()
-  set activities(activities: Activity[]) {
+  set activities(activities: Array<Activity>) {
     this._activities = activities;
   }
 
-  get activities(): Activity[] {
+  get activities(): Array<Activity> {
     return this._activities;
   }
 }
