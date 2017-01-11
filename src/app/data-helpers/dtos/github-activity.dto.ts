@@ -5,7 +5,7 @@
  * view to receive data from a service
  * and display desired properties of an activity.
  */
-export interface GitHubActivityDto {
+interface GitHubActivityDto {
     branch: string;
     linkToActivity: string;
     message: string;
@@ -13,11 +13,11 @@ export interface GitHubActivityDto {
 } 
 
 // Activity types currently supported by the application.
-export const ACTIVITY_TYPES = {
+const ACTIVITY_TYPES = {
     CREATE: 'CreateEvent',
     COMMITCOMMENT: 'CommitCommentEvent',
     FORK: 'ForkEvent',
-    ISSUE: 'IssuesEvent',
+    ISSUES: 'IssuesEvent',
     ISSUECOMMENT: 'IssueCommentEvent',
     PUSH: 'PushEvent',
     WATCH: 'WatchEvent'
@@ -30,15 +30,11 @@ export const ACTIVITY_TYPES = {
   * @returns {boolean} - is the type found in ACTIVITY_TYPES
   */
 export function isValidActivityType(type: string): boolean {
-    const keys = Object.keys(ACTIVITY_TYPES)
-
-    for(let i = 0; i < keys.length; i++) {
-        if(ACTIVITY_TYPES[keys[i]] === type) {
-            return true;
-        }
-    }
-
-    return false;
+    let key = type
+        .trim()
+        .slice(0, -5)
+        .toUpperCase();
+    return ACTIVITY_TYPES[key] !== undefined;
 }
 
 /**
@@ -78,7 +74,7 @@ export function mapToDto(response: any): GitHubActivityDto {
             }
         }
 
-        case ACTIVITY_TYPES.ISSUE: {
+        case ACTIVITY_TYPES.ISSUES: {
             return {
                 branch: response.repo.name,
                 linkToActivity: response.payload.issue.html_url,
