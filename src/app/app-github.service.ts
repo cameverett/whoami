@@ -21,15 +21,15 @@ export class AppGitHubService {
     private userActivitiesUrl = 'https://api.github.com/users/';
     private userProfileUrl = 'https://api.github.com/users/';
 
-    constructor(private _http: Http) { }
+    constructor(private _http: Http) {}
 
     /**
      * Returns an observable receiving an array of the 
      * last 3 public events the user has been involved.
      * @param {string} username - The user's display name on GitHub.
-     * @returns {Observable<Activity[]>}
+     * @returns {Observable<Array<Activity>>}
      */
-    getActivities(username: string): Observable<Activity[]> {
+    getActivities(username: string): Observable<Array<Activity>> {
         return this._http.get(this.userActivitiesUrl + username + '/events/public?per_page=3')
             .map((res: Response) => {
                 return this.mapPropsToActivityModel(res);
@@ -43,9 +43,9 @@ export class AppGitHubService {
      * Returns an observable receiving an array of at most 9 repositories 
      * that the user has interacted with on GitHub.
      * @param {string} username - The user's display name on GitHub.
-     * @returns {Observable<Repo[]>}
+     * @returns {Observable<Array<Repo>>}
      */
-    getRepos(username: string): Observable<Repo[]> {
+    getRepos(username: string): Observable<Array<Repo>> {
         return this._http.get(this.repoByUsernameUrl + username + '/repos?per_page=9')
             .map((res: Response) => {
                 return this.mapPropsToRepoModel(res);
@@ -107,7 +107,7 @@ export class AppGitHubService {
                 name: res.name,
                 primaryLanguage: res.language,
                 url: res.html_url
-            }
+            };
         });
     }
 
