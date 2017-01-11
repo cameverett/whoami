@@ -8,6 +8,10 @@ import Repo from '../Models/Repo';
     styleUrls: ['github-repo.component.css']
 
 })
+
+/**
+ * Displays the current array of public repositories from the AppComponent.
+ */
 export class GitHubRepoComponent {
     private _repos: Repo[];
 
