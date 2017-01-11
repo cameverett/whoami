@@ -85,7 +85,6 @@ export function mapToDto(response: any): GitHubAcitivityDto {
         }
 
         case ACTIVITY_TYPES.WATCH: {
-            console.log(response)
             return {
                 branch: '',
                 linkToActivity: `${domain}/${response.repo.name}`,
