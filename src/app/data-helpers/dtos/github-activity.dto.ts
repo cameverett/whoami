@@ -18,6 +18,7 @@ export const ACTIVITY_TYPES = {
     COMMITCOMMENT: 'CommitCommentEvent',
     FORK: 'ForkEvent',
     ISSUE: 'IssuesEvent',
+    ISSUECOMMENT: 'IssueCommentEvent',
     PUSH: 'PushEvent',
     WATCH: 'WatchEvent'
 }
@@ -78,12 +79,20 @@ export function mapToDto(response: any): GitHubActivityDto {
         }
 
         case ACTIVITY_TYPES.ISSUE: {
-            console.log(response);
             return {
-                branch: '',
+                branch: response.repo.name,
                 linkToActivity: response.payload.issue.html_url,
                 message: response.payload.action + ' an issue.',
                 repoName: response.payload.issue.title,
+            }
+        }
+        
+        case ACTIVITY_TYPES.ISSUECOMMENT: {
+            return {
+                branch: response.repo.name,
+                linkToActivity: response.payload.comment.html_url,
+                message: response.payload.action + ' comment on an issue.',
+                repoName: 'View the comment thread.',
             }
         }
 
