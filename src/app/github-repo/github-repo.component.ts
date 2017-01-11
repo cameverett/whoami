@@ -13,14 +13,14 @@ import Repo from '../Models/Repo';
  * Displays the current array of public repositories from the AppComponent.
  */
 export class GitHubRepoComponent {
-    private _repos: Repo[];
+    private _repos: Array<Repo>;
 
     @Input()
-    set repos(repos: Repo[]) {
+    set repos(repos: Array<Repo>) {
         this._repos = repos;
     }
 
-    get repos(): Repo[] {
+    get repos(): Array<Repo> {
         return this._repos;
     }
 }
