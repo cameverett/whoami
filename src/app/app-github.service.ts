@@ -35,8 +35,8 @@ export class AppGitHubService {
                 return this.mapPropsToActivityModel(res);
             })
             .catch((error: any) => {
-                return Observable.throw(error) || 'Server Error.'
-            })
+                return Observable.throw(error) || 'Server Error.';
+            });
     } 
 
     /**
@@ -52,7 +52,7 @@ export class AppGitHubService {
             })
             .catch((error: any) => {
                 return Observable.throw(error) || 'Server Error';
-            })
+            });
     }
 
     /**
@@ -68,7 +68,7 @@ export class AppGitHubService {
             })
             .catch((error: any) => {
                 return Observable.throw(error) || 'Server Error';
-            })
+            });
     }
 
     /**
@@ -84,7 +84,7 @@ export class AppGitHubService {
         // Allow only activities handled in the app/data-helpers/dtos.
         const filteredResults = results.filter( res => {
             return isValidActivityType(res.type);
-        })
+        });
         
         // Map each result to the Activity interface.
         return filteredResults.map(event => {
@@ -108,7 +108,7 @@ export class AppGitHubService {
                 primaryLanguage: res.language,
                 url: res.html_url
             }
-        })
+        });
     }
 
     /**
@@ -119,13 +119,13 @@ export class AppGitHubService {
      * @returns {User}
      */
     private mapPropsToUserModel(response: Response): User {
-        let result = response.json();
+        const result = response.json();
         return {
             bio: result.bio,
             profileUrl: result.html_url,
             thumbnail: result.avatar_url,
             username: result.login
-        }
+        };
     }
 
 }

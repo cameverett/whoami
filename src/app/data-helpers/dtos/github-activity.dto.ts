@@ -70,7 +70,7 @@ export function mapToDto(response: any): GitHubAcitivityDto {
         case ACTIVITY_TYPES.FORK: {
             return {
                 branch: '',
-                linkToActivity: response.payload.html_url,
+                linkToActivity: response.payload.forkee.html_url,
                 message: 'forked ' + response.repo.name,
                 repoName: response.payload.forkee.full_name
             }
