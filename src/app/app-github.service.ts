@@ -21,6 +21,21 @@ export class AppGitHubService {
 
     constructor(private _http: Http) {}
 
+    loadUserInfo(username: string): Observable<any> {
+        return Observable.forkJoin(
+            this.getActivities(username),
+            this.getRepos(username),
+            this.getUser(username)
+        )
+        .map(res => {
+            return {
+                activities: res[0],
+                repos: res[1],
+                user: res[2],
+            }
+        });
+    }
+
     /**
      * Returns an observable receiving an array of the 
      * last 3 public events the user has been involved.
@@ -36,6 +51,7 @@ export class AppGitHubService {
             {
                 search: params
             })
+            .retry(1)
             .map((res: Response) => {
                 return this.mapPropsToActivityModel(res);
             })
@@ -59,6 +75,7 @@ export class AppGitHubService {
             {
                 search: params
             })
+            .retry(1)
             .map((res: Response) => {
                 return this.mapPropsToRepoModel(res);
             })
@@ -75,6 +92,7 @@ export class AppGitHubService {
      */
     getUser(username: string): Observable<User> {
         return this._http.get(`${this.baseUrl}/${username}`)
+            .retry(1)
             .map((res: Response) => {
                 return this.mapPropsToUserModel(res);
             })
