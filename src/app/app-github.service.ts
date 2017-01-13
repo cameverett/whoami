@@ -19,7 +19,7 @@ import { isValidActivityType, mapToDto } from './data-helpers/dtos/github-activi
  */
 @Injectable()
 export class AppGitHubService {
-    private baseUrl: string = 'https://api.github.com/users';
+    private baseUsersUrl: string = 'https://api.github.com/users';
 
     constructor(private _http: Http) {}
 
@@ -49,7 +49,7 @@ export class AppGitHubService {
         params.set('per_page', '3');
 
         return this._http.get(
-            `${this.baseUrl}/${username}/events/public`,
+            `${this.baseUsersUrl}/${username}/events/public`,
             {
                 search: params
             })
@@ -81,7 +81,7 @@ export class AppGitHubService {
         params.set('per_page', '9');
 
         return this._http.get(
-            `${this.baseUrl}/${username}/repos`,
+            `${this.baseUsersUrl}/${username}/repos`,
             {
                 search: params
             })
@@ -110,7 +110,7 @@ export class AppGitHubService {
      * @returns {Observable<User>}
      */
     getUser(username: string): Observable<User> {
-        return this._http.get(`${this.baseUrl}/${username}`)
+        return this._http.get(`${this.baseUsersUrl}/${username}`)
             .retry(1)
             .map((res: Response) => {
                 const userInfo = res.json();
