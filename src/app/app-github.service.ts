@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import 'rxjs/add/operator/map';
@@ -16,9 +16,7 @@ import { isValidActivityType, mapToDto } from './data-helpers/dtos/github-activi
  */
 @Injectable()
 export class AppGitHubService {
-    private repoByUsernameUrl = 'https://api.github.com/users/';
-    private userActivitiesUrl = 'https://api.github.com/users/';
-    private userProfileUrl = 'https://api.github.com/users/';
+    private baseUrl: string = 'https://api.github.com/users';
 
     constructor(private _http: Http) {}
 
@@ -29,7 +27,8 @@ export class AppGitHubService {
      * @returns {Observable<Array<Activity>>}
      */
     getActivities(username: string): Observable<Array<Activity>> {
-        return this._http.get(this.userActivitiesUrl + username + '/events/public?per_page=3')
+        console.log(`${this.baseUrl}/${username}/events/public`);
+        return this._http.get(`${this.baseUrl}/${username}/events/public?per_page=3`)
             .map((res: Response) => {
                 return this.mapPropsToActivityModel(res);
             })
@@ -45,7 +44,7 @@ export class AppGitHubService {
      * @returns {Observable<Array<Repo>>}
      */
     getRepos(username: string): Observable<Array<Repo>> {
-        return this._http.get(this.repoByUsernameUrl + username + '/repos?per_page=9')
+        return this._http.get(`${this.baseUrl}/${username}/repos?per_page=9`)
             .map((res: Response) => {
                 return this.mapPropsToRepoModel(res);
             })
@@ -61,7 +60,8 @@ export class AppGitHubService {
      * @returns {Observable<User>}
      */
     getUser(username: string): Observable<User> {
-        return this._http.get(this.userProfileUrl + username)
+        //return this._http.get(this.userProfileUrl + username)
+        return this._http.get(`${this.baseUrl}/${username}`)
             .map((res: Response) => {
                 return this.mapPropsToUserModel(res);
             })
