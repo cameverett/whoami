@@ -10,7 +10,7 @@ interface GitHubActivityDto {
     linkToActivity: string;
     message: string;
     repoName: string;
-} 
+}
 
 // Activity types currently supported by the application.
 const ACTIVITY_TYPES = {
@@ -21,7 +21,7 @@ const ACTIVITY_TYPES = {
     ISSUECOMMENT: 'IssueCommentEvent',
     PUSH: 'PushEvent',
     WATCH: 'WatchEvent'
-}
+};
 
 /**
   * Check if the activity is in the ACTIVITY_TYPES object
@@ -44,16 +44,16 @@ export function isValidActivityType(type: string): boolean {
  * @returns {GitHubActivityDto} returns a valid GitHubActivityDto.
  */
 export function mapToDto(response: any): GitHubActivityDto {
-    const domain: string = 'https://github.com/';
+    const domain = 'https://github.com/';
     switch (response.type) {
 
         case ACTIVITY_TYPES.COMMITCOMMENT: {
             return {
                 branch: '',
                 linkToActivity: response.payload.comment.html_url,
-                message: "Says, '" + response.payload.comment.body + "'",
+                message: `Says "${response.payload.comment.body}"`,
                 repoName: 'View the comment thread',
-            }
+            };
         }
 
         case ACTIVITY_TYPES.CREATE: {
@@ -62,7 +62,7 @@ export function mapToDto(response: any): GitHubActivityDto {
                 linkToActivity: domain + response.repo.name,
                 message: 'created ' + ( response.payload.ref || response.payload.ref_type),
                 repoName: response.repo.name
-            }
+            };
         }
 
         case ACTIVITY_TYPES.FORK: {
@@ -71,7 +71,7 @@ export function mapToDto(response: any): GitHubActivityDto {
                 linkToActivity: response.payload.forkee.html_url,
                 message: 'forked ' + response.repo.name,
                 repoName: response.payload.forkee.full_name
-            }
+            };
         }
 
         case ACTIVITY_TYPES.ISSUES: {
@@ -80,16 +80,16 @@ export function mapToDto(response: any): GitHubActivityDto {
                 linkToActivity: response.payload.issue.html_url,
                 message: response.payload.action + ' an issue.',
                 repoName: response.payload.issue.title,
-            }
+            };
         }
-        
+
         case ACTIVITY_TYPES.ISSUECOMMENT: {
             return {
                 branch: response.repo.name,
                 linkToActivity: response.payload.comment.html_url,
                 message: response.payload.action + ' comment on an issue.',
                 repoName: 'View the comment thread.',
-            }
+            };
         }
 
         case ACTIVITY_TYPES.PUSH: {
@@ -98,7 +98,7 @@ export function mapToDto(response: any): GitHubActivityDto {
                 linkToActivity: domain + response.repo.name + '/commit/' + response.payload.commits[0].sha,
                 message: response.payload.commits[0].message,
                 repoName: response.repo.name
-            }
+            };
         }
 
         case ACTIVITY_TYPES.WATCH: {
@@ -107,7 +107,7 @@ export function mapToDto(response: any): GitHubActivityDto {
                 linkToActivity: domain + response.repo.name,
                 message: response.actor.display_login + ' watched a repo.',
                 repoName: response.repo.name
-            }
+            };
         }
 
         default: {
