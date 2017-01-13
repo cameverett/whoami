@@ -44,14 +44,15 @@ export function isValidActivityType(type: string): boolean {
  * @returns {GitHubActivityDto} returns a valid GitHubActivityDto.
  */
 export function mapToDto(response: any): GitHubActivityDto {
-    const domain = 'https://github.com/';
+    const domain = 'https://github.com';
+
     switch (response.type) {
 
         case ACTIVITY_TYPES.COMMITCOMMENT: {
             return {
                 branch: '',
                 linkToActivity: response.payload.comment.html_url,
-                message: `Says "${response.payload.comment.body}"`,
+                message: `Says, "${response.payload.comment.body}"`,
                 repoName: 'View the comment thread',
             };
         }
@@ -59,8 +60,8 @@ export function mapToDto(response: any): GitHubActivityDto {
         case ACTIVITY_TYPES.CREATE: {
             return {
                 branch: response.payload.description,
-                linkToActivity: domain + response.repo.name,
-                message: 'created ' + ( response.payload.ref || response.payload.ref_type),
+                linkToActivity: `${domain}/${response.repo.name}`,
+                message: `Created ${response.payload.ref || response.payload.ref_type}.`,
                 repoName: response.repo.name
             };
         }
@@ -69,7 +70,7 @@ export function mapToDto(response: any): GitHubActivityDto {
             return {
                 branch: '',
                 linkToActivity: response.payload.forkee.html_url,
-                message: 'forked ' + response.repo.name,
+                message: `Forked ${response.repo.name}.`,
                 repoName: response.payload.forkee.full_name
             };
         }
@@ -78,7 +79,7 @@ export function mapToDto(response: any): GitHubActivityDto {
             return {
                 branch: response.repo.name,
                 linkToActivity: response.payload.issue.html_url,
-                message: response.payload.action + ' an issue.',
+                message: `${response.payload.action} an issue.`,
                 repoName: response.payload.issue.title,
             };
         }
@@ -87,7 +88,7 @@ export function mapToDto(response: any): GitHubActivityDto {
             return {
                 branch: response.repo.name,
                 linkToActivity: response.payload.comment.html_url,
-                message: response.payload.action + ' comment on an issue.',
+                message: `${response.payload.action} comment on an issue.`,
                 repoName: 'View the comment thread.',
             };
         }
@@ -95,7 +96,7 @@ export function mapToDto(response: any): GitHubActivityDto {
         case ACTIVITY_TYPES.PUSH: {
             return {
                 branch: response.payload.ref,
-                linkToActivity: domain + response.repo.name + '/commit/' + response.payload.commits[0].sha,
+                linkToActivity: `${domain}/${response.repo.name}/commit/${response.payload.commits[0].sha}`,
                 message: response.payload.commits[0].message,
                 repoName: response.repo.name
             };
@@ -104,8 +105,8 @@ export function mapToDto(response: any): GitHubActivityDto {
         case ACTIVITY_TYPES.WATCH: {
             return {
                 branch: '',
-                linkToActivity: domain + response.repo.name,
-                message: response.actor.display_login + ' watched a repo.',
+                linkToActivity: `${domain}/${response.repo.name}`,
+                message: `${response.actor.display_login} watched a repo.`,
                 repoName: response.repo.name
             };
         }
