@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Repo } from '../Models/Repo';
 
 @Component({
-    selector: 'github-repo',
+    selector: 'app-github-repo',
     templateUrl: 'github-repo.component.html',
     styleUrls: ['github-repo.component.css']
 

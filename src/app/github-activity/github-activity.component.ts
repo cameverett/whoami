@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Activity } from '../Models/Activity';
 
 @Component({
-  selector: 'github-activity',
+  selector: 'app-github-activity',
   templateUrl: './github-activity.component.html',
   styleUrls: ['./github-activity.component.css']
 })
