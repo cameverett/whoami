@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppGitHubService } from './app-github.service';
+import { AppGitHubService } from './shared/app-github.service';
 
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -27,4 +27,4 @@ import { GitHubRepoComponent } from './github-repo/github-repo.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

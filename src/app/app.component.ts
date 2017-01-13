@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AppGitHubService } from './app-github.service';
+import { AppGitHubService } from './shared/app-github.service';
 
 import { Activity } from './Models/Activity';
 import { Repo } from './Models/Repo';
