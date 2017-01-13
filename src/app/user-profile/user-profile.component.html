@@ -10,7 +10,7 @@
     </div>
   </form>
   <div class="card-content">
-    <p>{{ user.bio }}</p>
+    <p class="truncate">{{ user.bio || 'No bio.' }}</p>
   </div>
   <div class="card-action">
     <a href="{{ user.profileUrl }}" style="color: #f82">Go to profile</a>
