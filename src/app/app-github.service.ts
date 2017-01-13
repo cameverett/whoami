@@ -18,6 +18,7 @@ import { isValidActivityType, mapToDto } from './data-helpers/dtos/github-activi
 export class AppGitHubService {
     private baseUrl: string = 'https://api.github.com/users';
 
+
     constructor(private _http: Http) {}
 
     /**
@@ -27,8 +28,14 @@ export class AppGitHubService {
      * @returns {Observable<Array<Activity>>}
      */
     getActivities(username: string): Observable<Array<Activity>> {
-        console.log(`${this.baseUrl}/${username}/events/public`);
-        return this._http.get(`${this.baseUrl}/${username}/events/public?per_page=3`)
+        let params = new URLSearchParams();
+        params.set('per_page', '3');
+
+        return this._http.get(
+            `${this.baseUrl}/${username}/events/public`,
+            {
+                search: params
+            })
             .map((res: Response) => {
                 return this.mapPropsToActivityModel(res);
             })
@@ -44,7 +51,14 @@ export class AppGitHubService {
      * @returns {Observable<Array<Repo>>}
      */
     getRepos(username: string): Observable<Array<Repo>> {
-        return this._http.get(`${this.baseUrl}/${username}/repos?per_page=9`)
+        let params = new URLSearchParams();
+        params.set('per_page', '9');
+
+        return this._http.get(
+            `${this.baseUrl}/${username}/repos`,
+            {
+                search: params
+            })
             .map((res: Response) => {
                 return this.mapPropsToRepoModel(res);
             })
@@ -60,7 +74,6 @@ export class AppGitHubService {
      * @returns {Observable<User>}
      */
     getUser(username: string): Observable<User> {
-        //return this._http.get(this.userProfileUrl + username)
         return this._http.get(`${this.baseUrl}/${username}`)
             .map((res: Response) => {
                 return this.mapPropsToUserModel(res);
