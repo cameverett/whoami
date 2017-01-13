@@ -18,7 +18,6 @@ import { isValidActivityType, mapToDto } from './data-helpers/dtos/github-activi
 export class AppGitHubService {
     private baseUrl: string = 'https://api.github.com/users';
 
-
     constructor(private _http: Http) {}
 
     /**
@@ -37,12 +36,20 @@ export class AppGitHubService {
                 search: params
             })
             .map((res: Response) => {
-                return this.mapPropsToActivityModel(res);
+                const results = res.json();
+                const filteredActivities = results.filter(
+                    activity => { return isValidActivityType(activity.type); }
+                );
+                return filteredActivities.map(
+                    event => {
+                        return mapToDto(event);
+                    }
+                );
             })
             .catch((error: any) => {
                 return Observable.throw(error) || 'Server Error.';
             });
-    } 
+    }
 
     /**
      * Returns an observable receiving an array of at most 9 repositories 
@@ -60,7 +67,16 @@ export class AppGitHubService {
                 search: params
             })
             .map((res: Response) => {
-                return this.mapPropsToRepoModel(res);
+                const repos = res.json();
+
+                return repos.map((repo) => {
+                    return {
+                        description: repo.description,
+                        name: repo.name,
+                        primaryLanguage: repo.language,
+                        url: repo.html_url
+                    };
+                });
             })
             .catch((error: any) => {
                 return Observable.throw(error) || 'Server Error';
@@ -76,68 +92,17 @@ export class AppGitHubService {
     getUser(username: string): Observable<User> {
         return this._http.get(`${this.baseUrl}/${username}`)
             .map((res: Response) => {
-                return this.mapPropsToUserModel(res);
+                const userInfo = res.json();
+                return {
+                    bio: userInfo.bio,
+                    profileUrl: userInfo.html_url,
+                    thumbnail: userInfo.avatar_url,
+                    username: userInfo.login
+                };
             })
             .catch((error: any) => {
                 return Observable.throw(error) || 'Server Error';
             });
-    }
-
-    /**
-     * Given a response from the api endpoint, return an object that
-     * corresponds to the Activity interface to be displayed
-     * by the GitHubActivityComponent.
-     * @param {Response} response - Response received from getActivities method
-     * @returns {Activity}
-     */
-    private mapPropsToActivityModel(response: Response): Activity {
-        const results = response.json();
-        
-        // Allow only activities handled in the app/data-helpers/dtos.
-        const filteredResults = results.filter( res => {
-            return isValidActivityType(res.type);
-        });
-        
-        // Map each result to the Activity interface.
-        return filteredResults.map(event => {
-            return mapToDto(event);
-        });
-    }
-
-    /**
-     * Given a response from the api endpoint, return an object that
-     * corresponds to the Repo interface to be displayed by 
-     * the GitHubRepoComponent.
-     * @param {Response} response - Response received from getRepos method.
-     * @returns {Repo}
-     */
-    private mapPropsToRepoModel(response: Response): Repo {
-        const repos = response.json();
-        return repos.map(res => {
-            return {
-                description: res.description,
-                name: res.name,
-                primaryLanguage: res.language,
-                url: res.html_url
-            };
-        });
-    }
-
-    /**
-     * Given a response from the api endpoint, return an object that
-     * corresponds to the User interface to be displayed 
-     * by the UserProfileComponent.
-     * @param {Response} response - Response received from the getUser method
-     * @returns {User}
-     */
-    private mapPropsToUserModel(response: Response): User {
-        const result = response.json();
-        return {
-            bio: result.bio,
-            profileUrl: result.html_url,
-            thumbnail: result.avatar_url,
-            username: result.login
-        };
     }
 
 }
