@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppGitHubService } from './shared/app-github.service';
-import { UserStoreService } from './shared/user-info.service';
+import { UserStoreService } from './shared/user-store.service';
 
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
