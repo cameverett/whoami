@@ -19,6 +19,7 @@ const ACTIVITY_TYPES = {
     FORK: 'ForkEvent',
     ISSUES: 'IssuesEvent',
     ISSUECOMMENT: 'IssueCommentEvent',
+    PULLREQUEST: 'PullRequestEvent',
     PUSH: 'PushEvent',
     WATCH: 'WatchEvent'
 };
@@ -90,6 +91,15 @@ export function mapToDto(response: any): GitHubActivityDto {
                 linkToActivity: response.payload.comment.html_url,
                 message: `${response.payload.action} comment on an issue.`,
                 repoName: 'View the comment thread.',
+            };
+        }
+
+        case ACTIVITY_TYPES.PULLREQUEST: {
+            return {
+                branch: response.payload.pull_request.title,
+                linkToActivity: response.payload.pull_request.html_url,
+                message: `${response.payload.action} a pull request.`,
+                repoName: `View pull request #${response.payload.pull_request.number}`
             };
         }
 
