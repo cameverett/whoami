@@ -5,21 +5,32 @@ import { Activity, Repo, User } from '../Models/index';
 
 @Injectable()
 export class UserInfoService {
-    private activities: Array<Activity>;
-    private repos: Array<Repo>;
+    private activities: Array<Activity> = [];
+    private repos: Array<Repo> = [];
     private user: User;
 
-    constructor(private _http: AppGitHubService) { }
+    constructor(private _http: AppGitHubService) {
+        this.loadNewUserInfo('github');
+        console.log(this.activities);
+        console.log(this.repos);
+        console.log(this.user);
+    }
 
-    public loadNewUserInfo(username: string): void {
-        this._http.loadUserInfo(username)
+    public loadNewUserInfo(username?: string): void {
+        this._http.loadUserInfo(username || 'github')
             .subscribe(
                 res => {
                     this.activities = res.activities,
                     this.repos = res.repos,
                     this.user = res.user
                 },
-                err => console.log(err)
+                err => console.log(err),
+                () => {
+                    console.log('BING', this.activities);
+                    console.log('BING', this.repos);
+                    console.log('BING', this.user);
+
+                }
             )
     }
 

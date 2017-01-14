@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppGitHubService } from './shared/app-github.service';
+import { UserInfoService } from './shared/user-info.service';
 
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -24,6 +25,7 @@ import { GitHubRepoComponent } from './github-repo/github-repo.component';
   ],
   providers: [
     AppGitHubService,
+    UserInfoService,
   ],
   bootstrap: [AppComponent]
 })
