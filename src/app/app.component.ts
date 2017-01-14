@@ -16,13 +16,25 @@ export class AppComponent {
   repos: Array<Repo>;
   user: User;
 
-  //private username: string = 'github';
+  constructor(private _userService: UserInfoService) {
+    this._userService.activities$.subscribe(
+      activities => this.activities = activities
+    );
 
-  constructor(private _userService: UserInfoService) {}
+    this._userService.repos$.subscribe(
+      repos => this.repos = repos
+    );
+
+    this._userService.user$.subscribe(
+      user => this.user = user
+    );
+  }
 
   /**
    * Requests public user information from the GitHubApi.
    */
-  private loadNewUserInfo(username: string): void {}
+  private loadNewUserInfo(username: string): void {
+    this._userService.loadNewUserInfo(username);
+  }
 
 }

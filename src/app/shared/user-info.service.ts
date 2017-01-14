@@ -1,46 +1,34 @@
 import { Injectable } from '@angular/core';
 import { AppGitHubService } from './app-github.service';
 
+import { Subject } from 'rxjs/Subject';
+
 import { Activity, Repo, User } from '../Models/index';
 
 @Injectable()
 export class UserInfoService {
-    private activities: Array<Activity> = [];
-    private repos: Array<Repo> = [];
-    private user: User;
+    private receivedActivitiesSource =  new Subject<Array<Activity>>();
+    private receivedReposSource =  new Subject<Array<Repo>>();
+    private receivedProfileSource =  new Subject<User>();
 
-    constructor(private _http: AppGitHubService) {
-        this.loadNewUserInfo('github');
-        console.log(this.activities);
-        console.log(this.repos);
-        console.log(this.user);
+    activities$ = this.receivedActivitiesSource.asObservable();
+    repos$ = this.receivedReposSource.asObservable();
+    user$ = this.receivedProfileSource.asObservable();
+
+    constructor(private _githubService: AppGitHubService) {
+        this.loadNewUserInfo();
     }
 
     public loadNewUserInfo(username?: string): void {
-        this._http.loadUserInfo(username || 'github')
+        this._githubService.loadUserInfo(username || 'github')
             .subscribe(
                 res => {
-                    this.activities = res.activities,
-                    this.repos = res.repos,
-                    this.user = res.user
+                    this.receivedActivitiesSource.next(res.activities);
+                    this.receivedReposSource.next(res.repos);
+                    this.receivedProfileSource.next(res.user);
                 },
                 err => console.log(err),
-                () => {
-                    console.log('BING', this.activities);
-                    console.log('BING', this.repos);
-                    console.log('BING', this.user);
-
-                }
-            )
+            );
     }
 
-    public get userActivities(): Array<Activity> {
-        return this.activities;
-    }
-    public get userRepos(): Array<Repo> {
-        return this.repos;
-    }
-    public get userProfile(): User {
-        return this.user;
-    }
 }
