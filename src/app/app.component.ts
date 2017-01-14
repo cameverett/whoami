@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AppGitHubService } from './app-github.service';
+import { UserStoreService } from './shared/user-store.service';
 
 import { Activity } from './Models/Activity';
 import { Repo } from './Models/Repo';
@@ -11,32 +11,30 @@ import { User } from './Models/User';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   activities: Array<Activity>;
   repos: Array<Repo>;
   user: User;
 
-  private username: string = 'github';
+  constructor(private _userService: UserStoreService) {
+    this._userService.activities$.subscribe(
+      activities => this.activities = activities
+    );
 
-  constructor(private appService: AppGitHubService) {}
+    this._userService.repos$.subscribe(
+      repos => this.repos = repos
+    );
 
-  ngOnInit() {
-    this.loadNewUserInfo(this.username);
+    this._userService.user$.subscribe(
+      user => this.user = user
+    );
   }
 
   /**
    * Requests public user information from the GitHubApi.
    */
   private loadNewUserInfo(username: string): void {
-      this.appService.loadUserInfo(username)
-        .subscribe(
-          res => {
-            this.activities = res.activities;
-            this.repos = res.repos;
-            this.user = res.user;
-          },
-          err => console.log(err)
-        );
+    this._userService.loadNewUserInfo(username);
   }
 
 }

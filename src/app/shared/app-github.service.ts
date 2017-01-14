@@ -8,11 +8,11 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/retry';
 
-import { Activity } from './Models/Activity';
-import { Repo } from './Models/Repo';
-import { User } from './Models/User';
+import { Activity } from '../Models/Activity';
+import { Repo } from '../Models/Repo';
+import { User } from '../Models/User';
 
-import { isValidActivityType, mapToDto } from './data-helpers/dtos/github-activity.dto';
+import { isValidActivityType, mapToDto } from '../data-helpers/dtos/github-activity.dto';
 
 /**
  * Provides public user information to the AppComponent.
