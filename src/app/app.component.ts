@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { UserStoreService } from './shared/user-store.service';
 
-import { Activity } from './Models/Activity';
-import { Repo } from './Models/Repo';
-import { User } from './Models/User';
+import { Activity, Repo, User } from './Models/index';
 
 @Component({
   selector: 'app-root',
