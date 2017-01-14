@@ -6,7 +6,7 @@ import { Subject } from 'rxjs/Subject';
 import { Activity, Repo, User } from '../Models/index';
 
 @Injectable()
-export class UserInfoService {
+export class UserStoreService {
     private receivedActivitiesSource =  new Subject<Array<Activity>>();
     private receivedReposSource =  new Subject<Array<Repo>>();
     private receivedProfileSource =  new Subject<User>();

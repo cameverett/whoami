@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UserInfoService } from './shared/user-info.service';
+import { UserStoreService } from './shared/user-info.service';
 
 import { Activity } from './Models/Activity';
 import { Repo } from './Models/Repo';
@@ -16,7 +16,7 @@ export class AppComponent {
   repos: Array<Repo>;
   user: User;
 
-  constructor(private _userService: UserInfoService) {
+  constructor(private _userService: UserStoreService) {
     this._userService.activities$.subscribe(
       activities => this.activities = activities
     );
